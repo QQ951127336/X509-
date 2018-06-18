@@ -1,0 +1,40 @@
+<div style="margin-top: 100px;margin-left: 200px">
+    <table border="1" cellspacing="0">
+        <thead>
+        <tr>
+            <th width="400">序列号</th>
+            <th width="200">下载</th>
+        </tr>
+        </thead>
+        <tbody id="hadCerList">
+
+        </tbody>
+    </table>
+</div>
+<button id="hadCerContentRefreshButton">刷新</button>
+<script>
+    var username = $("#userName").html();
+    function refreshHadCerContent(){
+        $("#hadCerList").html("");
+        $.post("/showCertificate/",{
+            username:username
+        },function(data,status){
+            data = $.parseJSON(data);
+            var tmpRow;
+            for(var i = 0 ; i< data.length;i++){
+                var message = data[i].fields;
+                tmpUrlList = message.file.split("/");
+                tmpUrl = ""
+                for (var i =1 ; i < tmpUrlList.length;i++){
+                    tmpUrl = tmpUrl +"/" +tmpUrlList[i]
+                }
+                tmpRow = $("<tr><td>"+message.serialNumber+"</td><td><a href='"+tmpUrl+"'>点击下载</a></td></tr>");
+                $("#hadCerList").append(tmpRow);
+            }
+        })
+    }
+    $("#hadCerContentRefreshButton").click(function(){
+        refreshHadCerContent()
+    })
+    $("#hadCerContentRefreshButton").click();
+</script>

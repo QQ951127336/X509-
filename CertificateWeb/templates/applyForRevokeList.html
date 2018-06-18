@@ -1,0 +1,54 @@
+<div style="margin-top: 100px;margin-left: 200px">
+    <table border="1" cellspacing="0">
+        <thead>
+        <tr>
+            <th width="400">序列号</th>
+            <th width="100">审批状态</th>
+        </tr>
+        </thead>
+        <tbody id="showApplyRevoke">
+
+        </tbody>
+    </table>
+</div>
+<button id="applyForRevokeListRefreshButton">刷新</button>
+<button id="applyForRevokeSubmit">确认吊销</button>
+<script>
+    $("#applyForRevokeListRefreshButton").click(function(){
+        $("#showApplyRevoke").html("");
+        showApplyForRevokeList();
+    });
+    var username = $("#userName").html();
+    function showApplyForRevokeList(){
+        $.post("/showApplyForRevokeList/",{
+            username:username,
+        },function(data,status){
+            console.log(data);
+            var tmpRow ;
+            data = $.parseJSON(data);
+            for (var i =0 ; i< data.length;i++){
+                var message = data[i].fields;
+                if (message.authority == "1"){
+                    message.authority = "等待审批";
+                }else{
+                    message.authority = "审批通过";
+                }
+                tmpRow = $("<tr><td>"+message.serialNumber+"</td><td>"+message.authority+"</td></tr>")
+                $("#showApplyRevoke").append(tmpRow);
+            }
+        });
+    }
+    $("#applyForRevokeListRefreshButton").click();
+    $("#applyForRevokeSubmit").click(function(){
+        $.post("/doRevoke/",{
+            username:username
+        },
+        function(data,status){
+            if (data == "200"){
+                alert("吊销成功");
+                $("#applyForRevokeListRefreshButton").click();
+            }
+        })
+    })
+
+</script>

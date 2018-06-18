@@ -1,0 +1,29 @@
+<div style="text-align: center;margin-left: 300px;margin-top: 200px">
+    <h1 >吊销证书的序列号</h1>
+    <input id="applyForRevokeSerialNumber" type="text">
+    <button id="applyForRevokeSerialNumberSubmit">确定</button>
+</div>
+<img src="/static/pic/delete.png" style="position: fixed;top:130px;left: 580px">
+<script>
+    var username = $("#userName").html();
+    $("#applyForRevokeSerialNumberSubmit").click(function(){
+        applyForRevoke();
+    });
+    function applyForRevoke(){
+        var serialNumber = $("#applyForRevokeSerialNumber").val();
+        $.post('/applyForRevoke/',{
+            username:username,
+            serialNumber:serialNumber,
+        },function(data,status){
+            if (data == "000"){
+                alert("该证书不存在");
+            }else if(data=="001"){
+                alert("该证书正在申请吊销中，请等待审批");
+            }else if (data=="200"){
+                alert("申请成功，请耐心等待");
+            }else{
+                alert("网络错误");
+            }
+        })
+    }
+</script>

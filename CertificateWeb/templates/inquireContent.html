@@ -1,0 +1,23 @@
+<div style="text-align: center;margin-left: auto;margin-right: auto;width: 900px;margin-top: 200px">
+    <h1>序列号：</h1>
+    <input id="inquireSerialNumber" type="text">
+    <button id="inquireButton">查询</button>
+    <img src="/static/pic/magnifying.png" style="position: fixed;top:130px;left: 480px">
+</div>
+<script>
+    $("#inquireButton").click(function(){
+        var inputSerialNumber = $("#inquireSerialNumber").val();
+        $.post("/checkRevoke/",{
+            serialNumber:inputSerialNumber
+        },function(data,status){
+            if(data == "000"){
+                alert("该证书不存在");
+            }else if(data == "001"){
+                alert("该证书已吊销");
+            }else{
+                alert("该证书有效");
+            }
+        })
+
+    })
+</script>

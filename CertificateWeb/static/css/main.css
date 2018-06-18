@@ -1,0 +1,98 @@
+.header{
+    position: fixed;
+    top:0px;
+    background:black;
+    height:80px;
+    width: 100%;
+    color: white;
+}
+.header *{
+    float:left;
+    color: white;
+}
+
+#loginContent input{
+    height: 40px;
+    width: 250px;
+    background: white;
+    border-radius:5px;
+    margin-right: 5px;
+    float: left;
+}
+#applyForRevokeSerialNumber,#inquireSerialNumber{
+    height: 40px;
+    width: 400px;
+    background: white;
+    border-radius:5px;
+    margin-right: 5px;
+}
+
+#registerContent input{
+    height: 40px;
+    width: 250px;
+    margin-bottom: 5px;
+    background: white;
+    border-radius:5px;
+    margin-right: 5px;
+}
+#submitLogin,#submitRegister,#submitApply{
+
+    color:white;
+    background-color: rgba(16, 31, 194, 0.73);
+    border:0px;
+    border-radius:5px;
+    height:40px;
+    width:50px;
+}
+
+.footer{
+    position: fixed;
+    width: 100%;
+    bottom:0px;
+    height:40px;
+    color:white;
+    text-align: center;
+    background: black;
+}
+#nav button{
+    margin-bottom: 10px;
+    color:white;
+    border:0px;
+    border-radius:5px;
+    height:40px;
+    width:100px;
+}
+#refreshButton,#hadCerContentRefreshButton,#applyForRevokeListRefreshButton{
+    color:white;
+    background-color: rgba(16, 31, 194, 0.73);
+    border:0px;
+    border-radius:5px;
+    height:40px;
+    width:50px;
+    position:fixed;
+    top:200px;
+    right:100px;
+}
+
+#applyForRevokeSerialNumberSubmit{
+     color:white;
+    background-color: rgba(16, 31, 194, 0.73);
+    border:0px;
+    border-radius:5px;
+    height:40px;
+    width:50px;
+}
+#getCertificate,#applyForRevokeSubmit{
+       color:white;
+    background-color: rgba(194, 36, 27, 0.73);
+    border:0px;
+    border-radius:5px;
+    height:40px;
+    width:50px;
+    position:fixed;
+    top:250px;
+    right:100px;
+}
+#showApplyCer{
+
+}

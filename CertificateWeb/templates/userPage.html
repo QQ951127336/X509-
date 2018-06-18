@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>证书管理系统</title>
+    <link rel="stylesheet" type="text/css"  href="/static/css/main.css" />
+    <script src="/static/js/jquery-3.3.1.min.js"></script>
+</head>
+<body>
+<div class="header">
+    <h1 style="margin-left: 50px">证书分发系统</h1>
+    <a id="userName" style="margin-left: 800px;margin-top: 25px">{{ username }}</a>
+    <a id="logoutButton" style="margin-left:20px;margin-top: 25px">注销</a>
+</div>
+<div  id="nav" style="margin-top: 80px;float: left;width: 100px"  >
+    <button id="applyForCer" style="background: dodgerblue">申请证书</button>
+    <button id="applyList" style="background: rebeccapurple">申请列表</button>
+    <button id="revokeApply" style="background: #4b8b27">吊销申请</button>
+    <button id="applyForRevoke" style="background: burlywood">吊销申请列表</button>
+    <button id="hadCer" style="background: chocolate">已有证书</button>
+    <button id="inquire" style="background: darkcyan">有效查询</button>
+    <button id="inquire" style="background: darkolivegreen;"><a style="text-align: center" href="{{ privateKey }}">私钥下载</a></button>
+
+</div>
+<div id="applyForCerContent" style="margin-top: 80px;float: left;">
+{% include 'applyForCerContent.html' %}
+</div>
+<div id="applyListContent" style="margin-top: 80px;float: left;">
+{% include 'applyListContent.html' %}
+</div>
+<div id="applyForRevokeList" style="margin-top: 80px;float: left;">
+{% include 'applyForRevokeList.html' %}
+</div>
+<div id="hadCerContent" style="margin-top: 80px;float: left;">
+{% include 'hadCerContent.html' %}
+</div>
+<div id="inquireContent" style="margin-top: 80px;float: left;">
+{% include 'inquireContent.html' %}
+</div>
+<div id="applyForRevokeContent" style="margin-top: 80px;float: left;">
+    {% include 'applyForRevoke.html' %}
+</div>
+<div class="footer"><p >证书分发系统</p></div>
+<script>
+    $("#logoutButton").click(function(){
+        $(window).attr("location","/")
+    });
+    $("#applyForCer").click(function(){
+        hideAllContent();
+        $("#applyForCerContent").fadeIn();
+    });
+    $("#applyList").click(function(){
+        hideAllContent();
+        $("#applyListContent").fadeIn();
+    });
+    $("#applyForRevoke").click(function(){
+        hideAllContent();
+        $("#applyForRevokeList").fadeIn();
+    });
+    $("#hadCer").click(function(){
+        hideAllContent();
+        $("#hadCerContent").fadeIn();
+    });
+    $("#inquire").click(function(){
+        hideAllContent();
+        $("#inquireContent").fadeIn();
+    });
+    $("#revokeApply").click(function () {
+       hideAllContent();
+       $("#applyForRevokeContent").fadeIn();
+    });
+    function hideAllContent(){
+        $("#applyForCerContent").hide();
+        $("#applyListContent").hide();
+        $("#applyForRevokeContent").hide();
+        $("#applyForRevokeList").hide();
+        $("#hadCerContent").hide();
+        $("#inquireContent").hide();
+    }
+    $("#applyForCer").click();
+</script>
+</body>
+</html>

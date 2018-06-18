@@ -1,0 +1,57 @@
+<div style="text-align: center;margin-left: auto;margin-right: auto;width: 900px;margin-top: 50px">
+
+    <p>国家:</p>
+    <input id="countryApply" type="text" placeholder="输入两个字母的国家缩写名">
+    <p>省份:</p>
+    <input id="provinceApply" type="text">
+    <p>城市：</p>
+    <input id="localityApply" type="text">
+    <p>组织：</p>
+    <input id="organization" type="text">
+    <p>通用名：</p>
+    <input id="common" type="text">
+    <p>DSN ：</p>
+    <input id="dsn" type="text">
+    <div style="height: 10px"></div>
+    <button id="submitApply">确认</button>
+    <img src="/static/pic/photograph.png" style="position: fixed;top:300px;right:100px">
+</div>
+<script>
+
+    $("#submitApply").click(function () {
+        var username = $("#userName").html();
+        var countryApply = $("#countryApply").val();
+        var provinceApply = $("#provinceApply").val();
+        var localityApply = $("#localityApply").val();
+        var organization = $("#organization").val();
+        var common = $("#common").val();
+        var dsn = $("#dsn").val();
+        if (countryApply == "" || provinceApply =="" || localityApply == "" || organization == "" || common == "" || dsn == ""){
+            alert("信息不能为空");
+        }else{
+            $.post("/applyCerBehavior/",{
+                username:username,
+                countryApply:countryApply,
+                provinceApply:provinceApply,
+                localityApply:localityApply,
+                organization:organization,
+                common:common,
+                dsn:dsn
+            },function(data,status){
+                if (data=="200"){
+                    alert("申请成功，请等待审批");
+                    $("#countryApply").val("");
+                    $("#provinceApply").val("");
+                    $("#localityApply").val("");
+                    $("#organization").val("");
+                    $("#common").val("");
+                    $("#dsn").val("");
+                }
+                else{
+                    alert("网络错误");
+                }
+            });
+        }
+
+    })
+</script>
